@@ -49,7 +49,7 @@ def north_plot():
         ra[star]=float(north_data[star][7])*(np.pi/12.0)#ra in radians
         dec[star]=90-float(north_data[star][8])#dec all positive
         mag[star]=4-float(north_data[star][13])#mag all positive and on increasing scale
-        full_con_list.append(north_data[star][29])
+        full_con_list.append(north_data[star][29])#column 29 is constellation name
 
     unique_con_list=list(set(full_con_list))
     #print this to see all the abbreviated constellation names
