@@ -53,6 +53,7 @@ def north_plot():
 
     unique_con_list=list(set(full_con_list))
     #print this to see all the abbreviated constellation names
+    print unique_con_list
 
     #Lines for Cygnus
     Cygnus_ra=np.array([])
@@ -118,6 +119,70 @@ def north_plot():
 
     Ori_line_10_ra=np.array([Orion_ra[8],Orion_ra[9]])
     Ori_line_10_dec=np.array([Orion_dec[8],Orion_dec[9]])
+
+    #Lines for Ursa Major
+    UMa_ra=np.array([])
+    UMa_dec=np.array([])
+    
+    for star in range(len(north_data)):
+        if north_data[star][29] == 'UMa':
+            if float(north_data[star][13])<=3.8:
+                UMa_ra=np.append(UMa_ra,ra[star])
+                UMa_dec=np.append(UMa_dec,dec[star])
+
+    UMa_line_1_ra=np.array([UMa_ra[8],UMa_ra[9]])
+    UMa_line_1_dec=np.array([UMa_dec[8],UMa_dec[9]])
+    
+    UMa_line_2_ra=np.array([UMa_ra[8],UMa_ra[13]])
+    UMa_line_2_dec=np.array([UMa_dec[8],UMa_dec[13]])
+    
+    UMa_line_3_ra=np.array([UMa_ra[14],UMa_ra[13]])
+    UMa_line_3_dec=np.array([UMa_dec[14],UMa_dec[13]])
+    
+    UMa_line_4_ra=np.array([UMa_ra[9],UMa_ra[14]])
+    UMa_line_4_dec=np.array([UMa_dec[9],UMa_dec[14]])
+    
+    UMa_line_5_ra=np.array([UMa_ra[15],UMa_ra[14]])
+    UMa_line_5_dec=np.array([UMa_dec[15],UMa_dec[14]])
+    
+    UMa_line_6_ra=np.array([UMa_ra[15],UMa_ra[16]])
+    UMa_line_6_dec=np.array([UMa_dec[15],UMa_dec[16]])
+
+    UMa_line_7_ra=np.array([UMa_ra[17],UMa_ra[16]])
+    UMa_line_7_dec=np.array([UMa_dec[17],UMa_dec[16]])
+
+    UMa_line_8_ra=np.array([UMa_ra[0],UMa_ra[3]])
+    UMa_line_8_dec=np.array([UMa_dec[0],UMa_dec[3]])
+
+    UMa_line_9_ra=np.array([UMa_ra[3],UMa_ra[9]])
+    UMa_line_9_dec=np.array([UMa_dec[3],UMa_dec[9]])
+
+    UMa_line_10_ra=np.array([UMa_ra[0],UMa_ra[5]])
+    UMa_line_10_dec=np.array([UMa_dec[0],UMa_dec[5]])
+
+    UMa_line_11_ra=np.array([UMa_ra[4],UMa_ra[5]])
+    UMa_line_11_dec=np.array([UMa_dec[4],UMa_dec[5]])
+
+    UMa_line_12_ra=np.array([UMa_ra[4],UMa_ra[1]])
+    UMa_line_12_dec=np.array([UMa_dec[4],UMa_dec[1]])
+
+    UMa_line_13_ra=np.array([UMa_ra[4],UMa_ra[2]])
+    UMa_line_13_dec=np.array([UMa_dec[4],UMa_dec[2]])
+
+    UMa_line_14_ra=np.array([UMa_ra[4],UMa_ra[10]])
+    UMa_line_14_dec=np.array([UMa_dec[4],UMa_dec[10]])
+
+    UMa_line_15_ra=np.array([UMa_ra[6],UMa_ra[10]])
+    UMa_line_15_dec=np.array([UMa_dec[6],UMa_dec[10]])
+
+    UMa_line_16_ra=np.array([UMa_ra[7],UMa_ra[10]])
+    UMa_line_16_dec=np.array([UMa_dec[7],UMa_dec[10]])
+
+    UMa_line_17_ra=np.array([UMa_ra[12],UMa_ra[10]])
+    UMa_line_17_dec=np.array([UMa_dec[12],UMa_dec[10]])
+
+    UMa_line_18_ra=np.array([UMa_ra[12],UMa_ra[13]])
+    UMa_line_18_dec=np.array([UMa_dec[12],UMa_dec[13]])
     
     plt.style.use('dark_background')
     ax = plt.subplot(111, projection='polar')
@@ -141,6 +206,27 @@ def north_plot():
     ax.plot(Ori_line_9_ra,Ori_line_9_dec,'r')
     ax.plot(Ori_line_10_ra,Ori_line_10_dec,'r')
 
+    #Plotting Ursa Major
+    ax.plot(UMa_line_1_ra,UMa_line_1_dec,'r')
+    ax.plot(UMa_line_2_ra,UMa_line_2_dec,'r')
+    ax.plot(UMa_line_3_ra,UMa_line_3_dec,'r')
+    ax.plot(UMa_line_4_ra,UMa_line_4_dec,'r')
+    ax.plot(UMa_line_5_ra,UMa_line_5_dec,'r')
+    ax.plot(UMa_line_6_ra,UMa_line_6_dec,'r')
+    ax.plot(UMa_line_7_ra,UMa_line_7_dec,'r')
+    ax.plot(UMa_line_8_ra,UMa_line_8_dec,'r')
+    ax.plot(UMa_line_9_ra,UMa_line_9_dec,'r')
+    ax.plot(UMa_line_10_ra,UMa_line_10_dec,'r')
+    ax.plot(UMa_line_11_ra,UMa_line_11_dec,'r')
+    ax.plot(UMa_line_12_ra,UMa_line_12_dec,'r')
+    ax.plot(UMa_line_13_ra,UMa_line_13_dec,'r')
+    ax.plot(UMa_line_14_ra,UMa_line_14_dec,'r')
+    ax.plot(UMa_line_15_ra,UMa_line_15_dec,'r')
+    ax.plot(UMa_line_16_ra,UMa_line_16_dec,'r')
+    ax.plot(UMa_line_17_ra,UMa_line_17_dec,'r')
+    ax.plot(UMa_line_18_ra,UMa_line_18_dec,'r')
+
+    
     #Plotting all stars
     for i in range(len(ra)):
         ax.plot(ra[i],dec[i],'wo',markersize=mag[i])
