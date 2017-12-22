@@ -52,7 +52,7 @@ def north_plot():
         full_con_list.append(north_data[star][29])#column 29 is constellation name
 
     unique_con_list=list(set(full_con_list))
-    #print this to see all the abbreviated constellation names
+    #list of all the abbreviated constellation names
     #print unique_con_list
 
     plt.style.use('dark_background')
