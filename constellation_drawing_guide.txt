@@ -44,7 +44,6 @@ line joins star 3 to star 4 in Cygnus:
 
 Repeat this for each pair of stars that need joining up.
 
-If anything is confusing, look at the chunk of code starting with the comment "Lines for Cygnus" and follow that. Probably best to add a 
-similar comment at the start of each constellation, and put them under Ursa Major.
+If anything is confusing, look at the chunk of code starting with the comment "Lines for Cygnus" and follow that.
 
 Have fun :) and let me know any time you start plotting a constellation so I don't do the same one.
