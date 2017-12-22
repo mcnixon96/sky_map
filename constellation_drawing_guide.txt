@@ -10,16 +10,16 @@ The more sensible way to do this would probably be to define a function that con
 
 Example (Cygnus):
 
-Cygnus_ra=np.array([])
-Cygnus_dec=np.array([])
+    Cygnus_ra=np.array([])
+    Cygnus_dec=np.array([])
     
-for star in range(len(north_data)):
-    if north_data[star][29] == 'Cyg':
-        if float(north_data[star][13])<=3.5:
-            Cygnus_ra=np.append(Cygnus_ra,ra[star])
-            Cygnus_dec=np.append(Cygnus_dec,dec[star])
+    for star in range(len(north_data)):
+        if north_data[star][29] == 'Cyg':
+            if float(north_data[star][13])<=3.5:
+                Cygnus_ra=np.append(Cygnus_ra,ra[star])
+                Cygnus_dec=np.append(Cygnus_dec,dec[star])
 
-My method for choosing how many stars count as the 'brightest' is just adding stars until the constellation looks the way it does on the sky (use Wikipedia for reference). You might need to find the abbreviated name of the constellation - there's a print statement you can uncomment in the code.
+My method for choosing how many stars count as the 'brightest' is just adding stars until the constellation looks the way it normally does on the sky (use Wikipedia for reference). You might need to find the abbreviated name of the constellation - there's a print statement you can uncomment in the code.
 
 Note that since astronomy is silly, the magnitude scale of brightness is defined backwards, so that brighter stars have lower magnitudes. Here I have taken all stars in the constellation with magnitudes less than 3.5.
 
@@ -29,10 +29,12 @@ It's helpful to comment out the 'plotting all stars' bits at the end of the func
 
 My method has been first of all to plot all of the constellation stars in red and draw it on a piece of paper. Then I plot one star at a time in white and note down its position in the list. Then just adapt three lines of code to plot the line - for example, if your first line joins star 3 to star 4 in Cygnus:
 
-Cyg_line_0_ra=np.array([Cygnus_ra[3],Cygnus_ra[4]])
-Cyg_line_0_dec=np.array([Cygnus_dec[3],Cygnus_dec[4]])
-ax.plot(Cyg_line_0_ra,Cyg_line_0_dec,'r')
+    Cyg_line_0_ra=np.array([Cygnus_ra[3],Cygnus_ra[4]])
+    Cyg_line_0_dec=np.array([Cygnus_dec[3],Cygnus_dec[4]])
+    ax.plot(Cyg_line_0_ra,Cyg_line_0_dec,'r')
 
 Repeat this for each pair of stars that need joining up.
+
+If anything is confusing, look at the chunk of code starting with the comment "Lines for Cygnus" and follow that. Probably best to add a similar comment at the start of each constellation, and put them under Ursa Major.
 
 Have fun :) and let me know any time you start plotting a constellation so I don't do the same one.
