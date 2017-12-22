@@ -53,7 +53,7 @@ def north_plot():
 
     unique_con_list=list(set(full_con_list))
     #print this to see all the abbreviated constellation names
-    print unique_con_list
+    #print unique_con_list
 
     #Lines for Cygnus
     Cygnus_ra=np.array([])
