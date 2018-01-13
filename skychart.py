@@ -2,6 +2,7 @@ import csv
 import sys
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.patches as patches
 
 def sky_data():
     """Import star data from HYG table and output data for the brightest stars in list format."""
@@ -52,7 +53,7 @@ def north_plot():
         full_con_list.append(north_data[star][29])#column 29 is constellation name
 
     unique_con_list=list(set(full_con_list))
-    #list of all the abbreviated constellation names
+    #print this to see all the abbreviated constellation names
     #print unique_con_list
 
     plt.style.use('dark_background')
@@ -225,6 +226,24 @@ def north_plot():
         ax.plot(ra[i],dec[i],'wo',markersize=mag[i])
 
     ax.set_rmax(120)
+    
+    plt.savefig('north_hemi.eps', format='eps', dpi=1000)
+    
     plt.show()
 
     return len(north_data)
+
+def limited_view():
+    
+    """probably won't use this"""
+    
+    full_sky = open('north_hemi.eps','r+')
+    image = plt.imread(full_sky)
+
+    fig, ax = plt.subplots()
+    im = ax.imshow(image)
+    patch = patches.Circle((100,100), radius=200, transform=ax.transData)
+    im.set_clip_path(patch)
+    ax.axis('off')
+    full_sky.close()
+    plt.show()
