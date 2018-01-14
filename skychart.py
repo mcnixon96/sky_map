@@ -3,6 +3,7 @@ import sys
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
+import datetime
 
 def sky_data():
     """Import star data from HYG table and output data for the brightest stars in list format."""
@@ -28,7 +29,7 @@ def sky_data():
 
     return bright_star_data
 
-def north_plot():
+def north_plot(year=2018,month=1,day=1):
     """Plots all stars visible in northern hemisphere with constellations."""
     
     stars=sky_data()
@@ -224,6 +225,13 @@ def north_plot():
     #Plotting all stars
     for i in range(len(ra)):
         ax.plot(ra[i],dec[i],'wo',markersize=mag[i])
+
+    #circle depicting which stars are visible on input date
+    ny=datetime.date(2018,1,1)
+    current_date=datetime.date(year,month,day)
+    days=(current_date-ny).days
+    print 2+(days/365.)*2*np.pi
+    ax.plot(2+(days/365.)*2*np.pi,35,'bo',markersize=188,markerfacecolor='none')
 
     ax.set_rmax(120)
     
