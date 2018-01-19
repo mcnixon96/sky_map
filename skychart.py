@@ -29,8 +29,8 @@ def sky_data():
 
     return bright_star_data
 
-def north_plot(year=2018,month=1,day=1):
-    """Plots all stars visible in northern hemisphere with constellations."""
+def north_plot(year=2018,month=1,day=1,limited_view='true'):
+    """Plots all stars visible in northern hemisphere with constellations. Input format: year, month, day."""
     
     stars=sky_data()
     north_data=[]
@@ -40,7 +40,16 @@ def north_plot(year=2018,month=1,day=1):
             if float(stars[star][8])<=90:
                 north_data.append(stars[star])
 
+    plt.style.use('dark_background')
+    ax = plt.subplot(111, projection='polar')
 
+    #setting origin based on input date
+    ny=datetime.date(2018,1,1)
+    current_date=datetime.date(year,month,day)
+    days=(current_date-ny).days
+    z_centre=35*np.exp(1j*(2+(days/365.)*2*np.pi))
+    print np.abs(z_centre)
+    
     #create arrays of ra and dec in polar coords as well as magnitude
     ra=np.zeros(len(north_data))
     dec=np.zeros(len(north_data))
@@ -52,13 +61,17 @@ def north_plot(year=2018,month=1,day=1):
         dec[star]=90-float(north_data[star][8])#dec all positive
         mag[star]=4-float(north_data[star][13])#mag all positive and on increasing scale
         full_con_list.append(north_data[star][29])#column 29 is constellation name
+        if limited_view is 'true':
+            z=dec[star]*np.exp(1j*ra[star])
+            z=z-z_centre
+            ra[star]=np.angle(z)
+            dec[star]=np.abs(z)
 
     unique_con_list=list(set(full_con_list))
     #print this to see all the abbreviated constellation names
     #print unique_con_list
 
-    plt.style.use('dark_background')
-    ax = plt.subplot(111, projection='polar')
+
 
     #Lines for Cygnus
     Cygnus_ra=np.array([])
@@ -225,33 +238,18 @@ def north_plot(year=2018,month=1,day=1):
     #Plotting all stars
     for i in range(len(ra)):
         ax.plot(ra[i],dec[i],'wo',markersize=mag[i])
+        
+    if limited_view is 'true':
+        ax.set_rmax(85)
+    else:
+        ax.set_rmax(120)
 
-    #circle depicting which stars are visible on input date
-    ny=datetime.date(2018,1,1)
-    current_date=datetime.date(year,month,day)
-    days=(current_date-ny).days
-    print 2+(days/365.)*2*np.pi
-    ax.plot(2+(days/365.)*2*np.pi,35,'bo',markersize=188,markerfacecolor='none')
-
-    ax.set_rmax(120)
-    
-    plt.savefig('north_hemi.eps', format='eps', dpi=1000)
+    ax.grid(False)
+    ax.set_xticklabels([])
+    ax.set_yticklabels([])
+        
+    #plt.savefig('north_hemi.eps', format='eps', dpi=1000)
     
     plt.show()
 
     return len(north_data)
-
-def limited_view():
-    
-    """probably won't use this"""
-    
-    full_sky = open('north_hemi.eps','r+')
-    image = plt.imread(full_sky)
-
-    fig, ax = plt.subplots()
-    im = ax.imshow(image)
-    patch = patches.Circle((100,100), radius=200, transform=ax.transData)
-    im.set_clip_path(patch)
-    ax.axis('off')
-    full_sky.close()
-    plt.show()
