@@ -30,7 +30,10 @@ def sky_data():
     return bright_star_data
 
 def north_plot(year=2018,month=1,day=1,limited_view='true'):
-    """Plots all stars visible in northern hemisphere with constellations. Input format: year, month, day."""
+    """Plots all stars visible in northern hemisphere with constellations. 
+    Input format: year, month, day. 
+    Leave limited_view at its default value to see only the stars that would be visible on the given date; 
+    set it to something else to see the whole map."""
     
     stars=sky_data()
     north_data=[]
