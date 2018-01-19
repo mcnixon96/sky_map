@@ -46,4 +46,5 @@ Repeat this for each pair of stars that need joining up.
 
 If anything is confusing, look at the chunk of code starting with the comment "Lines for Cygnus" and follow that.
 
-Have fun :) and let me know any time you start plotting a constellation so I don't do the same one.
+Have fun :) if I do any more of them I'll work backwards from the end of the list of constellations, so if you work from the start there
+shouldn't be any overlap.
