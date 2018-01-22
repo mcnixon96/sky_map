@@ -26,6 +26,12 @@ def sky_data():
             bright_star_data.append(star_data[star])
             #columns 7 and 8 are ra and dec, column 13 is magnitude
             #note that the lower the magnitude, the brighter the star
+    for star in range(len(star_data)):
+        if star_data[star][29]=='Gem' and float(star_data[star][13])<=4.42:
+            bright_star_data.append(star_data[star])
+    for star in range(len(star_data)):
+        if star_data[star][29]=='Per' and float(star_data[star][13])<=4.1 and float(star_data[star][13])>4.0:
+            bright_star_data.append(star_data[star])
 
     return bright_star_data
 
@@ -62,10 +68,11 @@ def north_plot(year=2018,month=1,day=1,limited_view='true'):
     for star in range(len(north_data)):
         ra[star]=float(north_data[star][7])*(np.pi/12.0)#ra in radians
         dec[star]=90-float(north_data[star][8])#dec all positive
-        mag[star]=4-float(north_data[star][13])#mag all positive and on increasing scale
+        mag[star]=4.42-float(north_data[star][13])#mag all positive and on increasing scale
         full_con_list.append(north_data[star][29])#column 29 is constellation name
         if limited_view is 'true':
             z=dec[star]*np.exp(1j*ra[star])
+            z=-np.conj(z)
             z=z-z_centre
             ra[star]=np.angle(z)
             dec[star]=np.abs(z)
@@ -237,6 +244,295 @@ def north_plot(year=2018,month=1,day=1,limited_view='true'):
     UMa_line_17_ra=np.array([UMa_ra[12],UMa_ra[10]])
     UMa_line_17_dec=np.array([UMa_dec[12],UMa_dec[10]])
     ax.plot(UMa_line_17_ra,UMa_line_17_dec,'r')
+
+    #Lines for Auriga
+    Aur_ra=np.array([])
+    Aur_dec=np.array([])
+
+    for star in range(len(north_data)):
+        if north_data[star][29] == 'Aur':
+            if float(north_data[star][13])<=3:
+                Aur_ra=np.append(Aur_ra,ra[star])
+                Aur_dec=np.append(Aur_dec,dec[star])
+        if north_data[star][29] == 'Tau':
+            if float(north_data[star][13])<=2 and float(north_data[star][13])>=1:
+                Aur_ra=np.append(Aur_ra,ra[star])
+                Aur_dec=np.append(Aur_dec,dec[star])
+
+    Aur_line_1_ra=np.array([Aur_ra[0],Aur_ra[1]])
+    Aur_line_1_dec=np.array([Aur_dec[0],Aur_dec[1]])
+    ax.plot(Aur_line_1_ra,Aur_line_1_dec,'r')
+
+    Aur_line_2_ra=np.array([Aur_ra[2],Aur_ra[0]])
+    Aur_line_2_dec=np.array([Aur_dec[2],Aur_dec[0]])
+    ax.plot(Aur_line_2_ra,Aur_line_2_dec,'r')
+
+    Aur_line_3_ra=np.array([Aur_ra[2],Aur_ra[4]])
+    Aur_line_3_dec=np.array([Aur_dec[2],Aur_dec[4]])
+    ax.plot(Aur_line_3_ra,Aur_line_3_dec,'r')
+
+    Aur_line_4_ra=np.array([Aur_ra[3],Aur_ra[4]])
+    Aur_line_4_dec=np.array([Aur_dec[3],Aur_dec[4]])
+    ax.plot(Aur_line_4_ra,Aur_line_4_dec,'r')
+
+    Aur_line_5_ra=np.array([Aur_ra[1],Aur_ra[3]])
+    Aur_line_5_dec=np.array([Aur_dec[1],Aur_dec[3]])
+    ax.plot(Aur_line_5_ra,Aur_line_5_dec,'r')
+
+    #Lines for Gemini
+    Gem_ra=np.array([])
+    Gem_dec=np.array([])
+    
+    for star in range(len(north_data)):
+        if north_data[star][29] == 'Gem':
+            if float(north_data[star][13])<=5:
+                Gem_ra=np.append(Gem_ra,ra[star])
+                Gem_dec=np.append(Gem_dec,dec[star])
+
+    Gem_line_1_ra=np.array([Gem_ra[3],Gem_ra[1]])
+    Gem_line_1_dec=np.array([Gem_dec[3],Gem_dec[1]])
+    ax.plot(Gem_line_1_ra,Gem_line_1_dec,'r')
+
+    Gem_line_2_ra=np.array([Gem_ra[3],Gem_ra[16]])
+    Gem_line_2_dec=np.array([Gem_dec[3],Gem_dec[16]])
+    ax.plot(Gem_line_2_ra,Gem_line_2_dec,'r')
+
+    Gem_line_3_ra=np.array([Gem_ra[8],Gem_ra[22]])
+    Gem_line_3_dec=np.array([Gem_dec[8],Gem_dec[22]])
+    ax.plot(Gem_line_3_ra,Gem_line_3_dec,'r')
+
+    Gem_line_4_ra=np.array([Gem_ra[8],Gem_ra[28]])
+    Gem_line_4_dec=np.array([Gem_dec[8],Gem_dec[28]])
+    ax.plot(Gem_line_4_ra,Gem_line_4_dec,'r')
+
+    Gem_line_5_ra=np.array([Gem_ra[11],Gem_ra[28]])
+    Gem_line_5_dec=np.array([Gem_dec[11],Gem_dec[28]])
+    ax.plot(Gem_line_5_ra,Gem_line_5_dec,'r')
+
+    Gem_line_6_ra=np.array([Gem_ra[10],Gem_ra[28]])
+    Gem_line_6_dec=np.array([Gem_dec[10],Gem_dec[28]])
+    ax.plot(Gem_line_6_ra,Gem_line_6_dec,'r')
+
+    Gem_line_7_ra=np.array([Gem_ra[7],Gem_ra[28]])
+    Gem_line_7_dec=np.array([Gem_dec[7],Gem_dec[28]])
+    ax.plot(Gem_line_7_ra,Gem_line_7_dec,'r')
+
+    Gem_line_8_ra=np.array([Gem_ra[7],Gem_ra[6]])
+    Gem_line_8_dec=np.array([Gem_dec[7],Gem_dec[6]])
+    ax.plot(Gem_line_8_ra,Gem_line_8_dec,'r')
+
+    Gem_line_9_ra=np.array([Gem_ra[7],Gem_ra[21]])
+    Gem_line_9_dec=np.array([Gem_dec[7],Gem_dec[21]])
+    ax.plot(Gem_line_9_ra,Gem_line_9_dec,'r')
+
+    Gem_line_10_ra=np.array([Gem_ra[6],Gem_ra[4]])
+    Gem_line_10_dec=np.array([Gem_dec[6],Gem_dec[4]])
+    ax.plot(Gem_line_10_ra,Gem_line_10_dec,'r')
+
+    Gem_line_11_ra=np.array([Gem_ra[2],Gem_ra[21]])
+    Gem_line_11_dec=np.array([Gem_dec[2],Gem_dec[21]])
+    ax.plot(Gem_line_11_ra,Gem_line_11_dec,'r')
+
+    Gem_line_12_ra=np.array([Gem_ra[22],Gem_ra[9]])
+    Gem_line_12_dec=np.array([Gem_dec[22],Gem_dec[9]])
+    ax.plot(Gem_line_12_ra,Gem_line_12_dec,'r')
+
+    Gem_line_13_ra=np.array([Gem_ra[22],Gem_ra[5]])
+    Gem_line_13_dec=np.array([Gem_dec[22],Gem_dec[5]])
+    ax.plot(Gem_line_13_ra,Gem_line_13_dec,'r')
+
+    Gem_line_14_ra=np.array([Gem_ra[22],Gem_ra[3]])
+    Gem_line_14_dec=np.array([Gem_dec[22],Gem_dec[3]])
+    ax.plot(Gem_line_14_ra,Gem_line_14_dec,'r')
+
+    Gem_line_15_ra=np.array([Gem_ra[1],Gem_ra[14]])
+    Gem_line_15_dec=np.array([Gem_dec[1],Gem_dec[14]])
+    ax.plot(Gem_line_15_ra,Gem_line_15_dec,'r')
+
+    Gem_line_16_ra=np.array([Gem_ra[14],Gem_ra[13]])
+    Gem_line_16_dec=np.array([Gem_dec[14],Gem_dec[13]])
+    ax.plot(Gem_line_16_ra,Gem_line_16_dec,'r')
+
+    #Lines for Taurus
+    Tau_ra=np.array([])
+    Tau_dec=np.array([])
+    
+    for star in range(len(north_data)):
+        if north_data[star][29] == 'Tau':
+            if float(north_data[star][13])<=3.6:
+                Tau_ra=np.append(Tau_ra,ra[star])
+                Tau_dec=np.append(Tau_dec,dec[star])
+
+    Tau_line_1_ra=np.array([Tau_ra[0],Tau_ra[2]])
+    Tau_line_1_dec=np.array([Tau_dec[0],Tau_dec[2]])
+    ax.plot(Tau_line_1_ra,Tau_line_1_dec,'r')
+
+    Tau_line_2_ra=np.array([Tau_ra[3],Tau_ra[2]])
+    Tau_line_2_dec=np.array([Tau_dec[3],Tau_dec[2]])
+    ax.plot(Tau_line_2_ra,Tau_line_2_dec,'r')
+
+    Tau_line_3_ra=np.array([Tau_ra[3],Tau_ra[4]])
+    Tau_line_3_dec=np.array([Tau_dec[3],Tau_dec[4]])
+    ax.plot(Tau_line_3_ra,Tau_line_3_dec,'r')
+
+    Tau_line_4_ra=np.array([Tau_ra[3],Tau_ra[1]])
+    Tau_line_4_dec=np.array([Tau_dec[3],Tau_dec[1]])
+    ax.plot(Tau_line_4_ra,Tau_line_4_dec,'r')
+
+    Tau_line_5_ra=np.array([Tau_ra[6],Tau_ra[4]])
+    Tau_line_5_dec=np.array([Tau_dec[6],Tau_dec[4]])
+    ax.plot(Tau_line_5_ra,Tau_line_5_dec,'r')
+
+    Tau_line_6_ra=np.array([Tau_ra[5],Tau_ra[2]])
+    Tau_line_6_dec=np.array([Tau_dec[5],Tau_dec[2]])
+    ax.plot(Tau_line_6_ra,Tau_line_6_dec,'r')
+
+    #Lines for Andromeda
+    And_ra=np.array([])
+    And_dec=np.array([])
+    
+    for star in range(len(north_data)):
+        if north_data[star][29] == 'And':
+            if float(north_data[star][13])<=4:
+                And_ra=np.append(And_ra,ra[star])
+                And_dec=np.append(And_dec,dec[star])
+
+    And_line_1_ra=np.array([And_ra[0],And_ra[1]])
+    And_line_1_dec=np.array([And_dec[0],And_dec[1]])
+    ax.plot(And_line_1_ra,And_line_1_dec,'r')
+
+    And_line_2_ra=np.array([And_ra[0],And_ra[2]])
+    And_line_2_dec=np.array([And_dec[0],And_dec[2]])
+    ax.plot(And_line_2_ra,And_line_2_dec,'r')
+
+    And_line_3_ra=np.array([And_ra[3],And_ra[1]])
+    And_line_3_dec=np.array([And_dec[3],And_dec[1]])
+    ax.plot(And_line_3_ra,And_line_3_dec,'r')
+
+    And_line_4_ra=np.array([And_ra[2],And_ra[4]])
+    And_line_4_dec=np.array([And_dec[2],And_dec[4]])
+    ax.plot(And_line_4_ra,And_line_4_dec,'r')
+
+    And_line_5_ra=np.array([And_ra[3],And_ra[5]])
+    And_line_5_dec=np.array([And_dec[3],And_dec[5]])
+    ax.plot(And_line_5_ra,And_line_5_dec,'r')
+
+    And_line_6_ra=np.array([And_ra[2],And_ra[7]])
+    And_line_6_dec=np.array([And_dec[2],And_dec[7]])
+    ax.plot(And_line_6_ra,And_line_6_dec,'r')
+
+    And_line_7_ra=np.array([And_ra[6],And_ra[7]])
+    And_line_7_dec=np.array([And_dec[6],And_dec[7]])
+    ax.plot(And_line_7_ra,And_line_7_dec,'r')
+
+    #Lines for Cassiopeia
+    Cas_ra=np.array([])
+    Cas_dec=np.array([])
+    
+    for star in range(len(north_data)):
+        if north_data[star][29] == 'Cas':
+            if float(north_data[star][13])<=3.4:
+                Cas_ra=np.append(Cas_ra,ra[star])
+                Cas_dec=np.append(Cas_dec,dec[star])
+
+    Cas_line_1_ra=np.array([Cas_ra[0],Cas_ra[1]])
+    Cas_line_1_dec=np.array([Cas_dec[0],Cas_dec[1]])
+    ax.plot(Cas_line_1_ra,Cas_line_1_dec,'r')
+
+    Cas_line_2_ra=np.array([Cas_ra[2],Cas_ra[1]])
+    Cas_line_2_dec=np.array([Cas_dec[2],Cas_dec[1]])
+    ax.plot(Cas_line_2_ra,Cas_line_2_dec,'r')
+
+    Cas_line_3_ra=np.array([Cas_ra[2],Cas_ra[3]])
+    Cas_line_3_dec=np.array([Cas_dec[2],Cas_dec[3]])
+    ax.plot(Cas_line_3_ra,Cas_line_3_dec,'r')
+
+    Cas_line_4_ra=np.array([Cas_ra[4],Cas_ra[3]])
+    Cas_line_4_dec=np.array([Cas_dec[4],Cas_dec[3]])
+    ax.plot(Cas_line_4_ra,Cas_line_4_dec,'r')
+
+    #Lines for Perseus
+    Per_ra=np.array([])
+    Per_dec=np.array([])
+    
+    for star in range(len(north_data)):
+        if north_data[star][29] == 'Per':
+            if float(north_data[star][13])<=4.1:
+                Per_ra=np.append(Per_ra,ra[star])
+                Per_dec=np.append(Per_dec,dec[star])
+
+    Per_line_1_ra=np.array([Per_ra[0],Per_ra[1]])
+    Per_line_1_dec=np.array([Per_dec[0],Per_dec[1]])
+    ax.plot(Per_line_1_ra,Per_line_1_dec,'r')
+
+    Per_line_2_ra=np.array([Per_ra[0],Per_ra[2]])
+    Per_line_2_dec=np.array([Per_dec[0],Per_dec[2]])
+    ax.plot(Per_line_2_ra,Per_line_2_dec,'r')
+
+    Per_line_3_ra=np.array([Per_ra[1],Per_ra[2]])
+    Per_line_3_dec=np.array([Per_dec[1],Per_dec[2]])
+    ax.plot(Per_line_3_ra,Per_line_3_dec,'r')
+
+    Per_line_4_ra=np.array([Per_ra[1],Per_ra[16]])
+    Per_line_4_dec=np.array([Per_dec[1],Per_dec[16]])
+    ax.plot(Per_line_4_ra,Per_line_4_dec,'r')
+
+    Per_line_5_ra=np.array([Per_ra[2],Per_ra[6]])
+    Per_line_5_dec=np.array([Per_dec[2],Per_dec[6]])
+    ax.plot(Per_line_5_ra,Per_line_5_dec,'r')
+
+    Per_line_6_ra=np.array([Per_ra[6],Per_ra[16]])
+    Per_line_6_dec=np.array([Per_dec[6],Per_dec[16]])
+    ax.plot(Per_line_6_ra,Per_line_6_dec,'r')
+
+    Per_line_7_ra=np.array([Per_ra[15],Per_ra[16]])
+    Per_line_7_dec=np.array([Per_dec[15],Per_dec[16]])
+    ax.plot(Per_line_7_ra,Per_line_7_dec,'r')
+
+    Per_line_8_ra=np.array([Per_ra[15],Per_ra[14]])
+    Per_line_8_dec=np.array([Per_dec[15],Per_dec[14]])
+    ax.plot(Per_line_8_ra,Per_line_8_dec,'r')
+
+    Per_line_9_ra=np.array([Per_ra[7],Per_ra[6]])
+    Per_line_9_dec=np.array([Per_dec[7],Per_dec[6]])
+    ax.plot(Per_line_9_ra,Per_line_9_dec,'r')
+
+    Per_line_10_ra=np.array([Per_ra[7],Per_ra[11]])
+    Per_line_10_dec=np.array([Per_dec[7],Per_dec[11]])
+    ax.plot(Per_line_10_ra,Per_line_10_dec,'r')
+
+    Per_line_11_ra=np.array([Per_ra[7],Per_ra[13]])
+    Per_line_11_dec=np.array([Per_dec[7],Per_dec[13]])
+    ax.plot(Per_line_11_ra,Per_line_11_dec,'r')
+
+    Per_line_12_ra=np.array([Per_ra[12],Per_ra[11]])
+    Per_line_12_dec=np.array([Per_dec[12],Per_dec[11]])
+    ax.plot(Per_line_12_ra,Per_line_12_dec,'r')
+
+    Per_line_13_ra=np.array([Per_ra[12],Per_ra[10]])
+    Per_line_13_dec=np.array([Per_dec[12],Per_dec[10]])
+    ax.plot(Per_line_13_ra,Per_line_13_dec,'r')
+
+    Per_line_14_ra=np.array([Per_ra[8],Per_ra[10]])
+    Per_line_14_dec=np.array([Per_dec[8],Per_dec[10]])
+    ax.plot(Per_line_14_ra,Per_line_14_dec,'r')
+
+    Per_line_15_ra=np.array([Per_ra[4],Per_ra[11]])
+    Per_line_15_dec=np.array([Per_dec[4],Per_dec[11]])
+    ax.plot(Per_line_15_ra,Per_line_15_dec,'r')
+
+    Per_line_16_ra=np.array([Per_ra[4],Per_ra[3]])
+    Per_line_16_dec=np.array([Per_dec[4],Per_dec[3]])
+    ax.plot(Per_line_16_ra,Per_line_16_dec,'r')
+
+    Per_line_17_ra=np.array([Per_ra[4],Per_ra[5]])
+    Per_line_17_dec=np.array([Per_dec[4],Per_dec[5]])
+    ax.plot(Per_line_17_ra,Per_line_17_dec,'r')
+
+    Per_line_18_ra=np.array([Per_ra[16],Per_ra[5]])
+    Per_line_18_dec=np.array([Per_dec[16],Per_dec[5]])
+    ax.plot(Per_line_18_ra,Per_line_18_dec,'r')
+
     
     #Plotting all stars
     for i in range(len(ra)):
