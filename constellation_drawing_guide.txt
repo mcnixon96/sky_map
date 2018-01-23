@@ -1,10 +1,11 @@
-There are three constellations there so far. There are 51 in total in the data for the Northern Hemisphere, but I think we should only 
-bother with these ones:
+TOTAL NUMBER OF CONSTELLATIONS TO DO: 31
 
-Cassiopeia, Cepheus, Draco, Ursa Minor, Aquila, Cygnus, Hercules, Lyra, Ophiuchus, Sagittarius, Scorpius, Bootes, Cancer, Crater, Hydra, 
-Leo, Virgo, Canis Major, Cetus, Eridanus, Gemini, Perseus, Taurus, Andromeda, Aquarius, Capricornus, Pegasus, Pisces
+CONSTELLATIONS ADDED: 9
+Cassiopeia, Orion, Ursa Major, Cygnus, Gemini, Perseus, Taurus, Andromeda, Auriga
 
-That's 28 on top of what we have already.
+CONSTELLATIONS REMAINING: 22
+Cepheus, Draco, Ursa Minor, Aquila, Hercules, Lyra, Ophiuchus, Sagittarius, Scorpius, Bootes, Cancer, Crater, Hydra, 
+Leo, Virgo, Canis Major, Cetus, Eridanus, Aquarius, Capricornus, Pegasus, Pisces
 
 The more sensible way to do this would probably be to define a function that connects 2 given stars with a red line, and just find the 
 required stars for each constellation, but since I'm not using a consistent minimum brightness and also since copying and pasting is easy 
@@ -28,7 +29,7 @@ does on the sky (use Wikipedia for reference). You might need to find the abbrev
 statement you can uncomment in the code.
 
 Note that since astronomy is silly, the magnitude scale of brightness is defined backwards, so that brighter stars have lower magnitudes. 
-Here I have taken all stars in the constellation with magnitudes less than 3.5.
+Here I have taken all stars in the constellation with magnitudes less than 3.5 (might need to stretch to 4 in some cases).
 
 2. Plot the lines of the constellation on to the sky chart.
 
