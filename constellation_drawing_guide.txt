@@ -1,9 +1,9 @@
 TOTAL NUMBER OF CONSTELLATIONS TO DO: 31
 
-CONSTELLATIONS ADDED: 9
+CONSTELLATIONS ADDED: 11
 Cassiopeia, Orion, Ursa Major, Cygnus, Gemini, Perseus, Taurus, Andromeda, Auriga, Cepheus, Bootes
 
-CONSTELLATIONS REMAINING: 22
+CONSTELLATIONS REMAINING: 19
 Draco, Ursa Minor, Aquila, Hercules, Lyra, Ophiuchus, Sagittarius, Scorpius, Cancer, Crater, Hydra, 
 Leo, Virgo, Canis Major, Cetus, Eridanus, Aquarius, Capricornus, Pegasus, Pisces
 
