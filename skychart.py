@@ -32,6 +32,9 @@ def sky_data():
     for star in range(len(star_data)):
         if star_data[star][29]=='Per' and float(star_data[star][13])<=4.1 and float(star_data[star][13])>4.0:
             bright_star_data.append(star_data[star])
+    for star in range(len(star_data)):
+        if star_data[star][29]=='Lyr' and float(star_data[star][13])<=4.4 and float(star_data[star][13])>4.0:
+            bright_star_data.append(star_data[star])
 
     return bright_star_data
 
@@ -533,10 +536,188 @@ def north_plot(year=2018,month=1,day=1,limited_view='true'):
     Per_line_18_dec=np.array([Per_dec[16],Per_dec[5]])
     ax.plot(Per_line_18_ra,Per_line_18_dec,'r')
 
+    #Lines for Cepheus
+    Cep_ra=np.array([])
+    Cep_dec=np.array([])
+    
+    for star in range(len(north_data)):
+        if north_data[star][29] == 'Cep':
+            if float(north_data[star][13])<=3.5:
+                Cep_ra=np.append(Cep_ra,ra[star])
+                Cep_dec=np.append(Cep_dec,dec[star])
+
+    Cep_line_1_ra=np.array([Cep_ra[1],Cep_ra[2]])
+    Cep_line_1_dec=np.array([Cep_dec[1],Cep_dec[2]])
+    ax.plot(Cep_line_1_ra,Cep_line_1_dec,'r')
+
+    Cep_line_2_ra=np.array([Cep_ra[3],Cep_ra[1]])
+    Cep_line_2_dec=np.array([Cep_dec[3],Cep_dec[1]])
+    ax.plot(Cep_line_2_ra,Cep_line_2_dec,'r')
+
+    Cep_line_3_ra=np.array([Cep_ra[3],Cep_ra[4]])
+    Cep_line_3_dec=np.array([Cep_dec[3],Cep_dec[4]])
+    ax.plot(Cep_line_3_ra,Cep_line_3_dec,'r')
+
+    Cep_line_4_ra=np.array([Cep_ra[2],Cep_ra[4]])
+    Cep_line_4_dec=np.array([Cep_dec[2],Cep_dec[4]])
+    ax.plot(Cep_line_4_ra,Cep_line_4_dec,'r')
+
+    Cep_line_5_ra=np.array([Cep_ra[2],Cep_ra[5]])
+    Cep_line_5_dec=np.array([Cep_dec[2],Cep_dec[5]])
+    ax.plot(Cep_line_5_ra,Cep_line_5_dec,'r')
+
+    Cep_line_6_ra=np.array([Cep_ra[5],Cep_ra[4]])
+    Cep_line_6_dec=np.array([Cep_dec[5],Cep_dec[4]])
+    ax.plot(Cep_line_6_ra,Cep_line_6_dec,'r')
+
+    #Lines for Bootes
+    Boo_ra=np.array([])
+    Boo_dec=np.array([])
+
+    for star in range(len(north_data)):
+        if north_data[star][29] == 'Boo':
+            if float(north_data[star][13])<=4:
+                Boo_ra=np.append(Boo_ra,ra[star])
+                Boo_dec=np.append(Boo_dec,dec[star])
+
+    Boo_line_1_ra=np.array([Boo_ra[0],Boo_ra[1]])
+    Boo_line_1_dec=np.array([Boo_dec[0],Boo_dec[1]])
+    ax.plot(Boo_line_1_ra,Boo_line_1_dec,'r')
+
+    Boo_line_2_ra=np.array([Boo_ra[1],Boo_ra[2]])
+    Boo_line_2_dec=np.array([Boo_dec[1],Boo_dec[2]])
+    ax.plot(Boo_line_2_ra,Boo_line_2_dec,'r')
+
+    Boo_line_3_ra=np.array([Boo_ra[2],Boo_ra[3]])
+    Boo_line_3_dec=np.array([Boo_dec[2],Boo_dec[3]])
+    ax.plot(Boo_line_3_ra,Boo_line_3_dec,'r')
+
+    Boo_line_4_ra=np.array([Boo_ra[4],Boo_ra[1]])
+    Boo_line_4_dec=np.array([Boo_dec[4],Boo_dec[1]])
+    ax.plot(Boo_line_4_ra,Boo_line_4_dec,'r')
+
+    Boo_line_5_ra=np.array([Boo_ra[1],Boo_ra[5]])
+    Boo_line_5_dec=np.array([Boo_dec[1],Boo_dec[5]])
+    ax.plot(Boo_line_5_ra,Boo_line_5_dec,'r')
+
+    Boo_line_6_ra=np.array([Boo_ra[6],Boo_ra[3]])
+    Boo_line_6_dec=np.array([Boo_dec[6],Boo_dec[3]])
+    ax.plot(Boo_line_6_ra,Boo_line_6_dec,'r')
+
+    Boo_line_7_ra=np.array([Boo_ra[6],Boo_ra[7]])
+    Boo_line_7_dec=np.array([Boo_dec[6],Boo_dec[7]])
+    ax.plot(Boo_line_7_ra,Boo_line_7_dec,'r')
+
+    Boo_line_8_ra=np.array([Boo_ra[5],Boo_ra[7]])
+    Boo_line_8_dec=np.array([Boo_dec[5],Boo_dec[7]])
+    ax.plot(Boo_line_8_ra,Boo_line_8_dec,'r')
+
+    #Lines for Draco
+    Dra_ra=np.array([])
+    Dra_dec=np.array([])
+    
+    for star in range(len(north_data)):
+        if north_data[star][29] == 'Dra':
+            if float(north_data[star][13])<=4:
+                Dra_ra=np.append(Dra_ra,ra[star])
+                Dra_dec=np.append(Dra_dec,dec[star])
+
+    Dra_line_1_ra=np.array([Dra_ra[0],Dra_ra[1]])
+    Dra_line_1_dec=np.array([Dra_dec[0],Dra_dec[1]])
+    ax.plot(Dra_line_1_ra,Dra_line_1_dec,'r')
+
+    Dra_line_2_ra=np.array([Dra_ra[2],Dra_ra[1]])
+    Dra_line_2_dec=np.array([Dra_dec[2],Dra_dec[1]])
+    ax.plot(Dra_line_2_ra,Dra_line_2_dec,'r')
+
+    Dra_line_3_ra=np.array([Dra_ra[2],Dra_ra[3]])
+    Dra_line_3_dec=np.array([Dra_dec[2],Dra_dec[3]])
+    ax.plot(Dra_line_3_ra,Dra_line_3_dec,'r')
+
+    Dra_line_4_ra=np.array([Dra_ra[4],Dra_ra[3]])
+    Dra_line_4_dec=np.array([Dra_dec[4],Dra_dec[3]])
+    ax.plot(Dra_line_4_ra,Dra_line_4_dec,'r')
+
+    Dra_line_5_ra=np.array([Dra_ra[4],Dra_ra[5]])
+    Dra_line_5_dec=np.array([Dra_dec[4],Dra_dec[5]])
+    ax.plot(Dra_line_5_ra,Dra_line_5_dec,'r')
+
+    Dra_line_6_ra=np.array([Dra_ra[9],Dra_ra[5]])
+    Dra_line_6_dec=np.array([Dra_dec[9],Dra_dec[5]])
+    ax.plot(Dra_line_6_ra,Dra_line_6_dec,'r')
+
+    Dra_line_7_ra=np.array([Dra_ra[6],Dra_ra[7]])
+    Dra_line_7_dec=np.array([Dra_dec[6],Dra_dec[7]])
+    ax.plot(Dra_line_7_ra,Dra_line_7_dec,'r')
+
+    Dra_line_8_ra=np.array([Dra_ra[6],Dra_ra[8]])
+    Dra_line_8_dec=np.array([Dra_dec[6],Dra_dec[8]])
+    ax.plot(Dra_line_8_ra,Dra_line_8_dec,'r')
+
+    Dra_line_9_ra=np.array([Dra_ra[8],Dra_ra[7]])
+    Dra_line_9_dec=np.array([Dra_dec[8],Dra_dec[7]])
+    ax.plot(Dra_line_9_ra,Dra_line_9_dec,'r')
+
+    Dra_line_10_ra=np.array([Dra_ra[6],Dra_ra[10]])
+    Dra_line_10_dec=np.array([Dra_dec[6],Dra_dec[10]])
+    ax.plot(Dra_line_10_ra,Dra_line_10_dec,'r')
+
+    Dra_line_11_ra=np.array([Dra_ra[11],Dra_ra[9]])
+    Dra_line_11_dec=np.array([Dra_dec[11],Dra_dec[9]])
+    ax.plot(Dra_line_11_ra,Dra_line_11_dec,'r')
+
+    Dra_line_12_ra=np.array([Dra_ra[11],Dra_ra[10]])
+    Dra_line_12_dec=np.array([Dra_dec[11],Dra_dec[10]])
+    ax.plot(Dra_line_12_ra,Dra_line_12_dec,'r')
+
+    #Lines for Aquila
+    Aql_ra=np.array([])
+    Aql_dec=np.array([])
+    
+    for star in range(len(north_data)):
+        if north_data[star][29] == 'Aql':
+            if float(north_data[star][13])<=3.5:
+                Aql_ra=np.append(Aql_ra,ra[star])
+                Aql_dec=np.append(Aql_dec,dec[star])
+
+    Aql_line_1_ra=np.array([Aql_ra[0],Aql_ra[2]])
+    Aql_line_1_dec=np.array([Aql_dec[0],Aql_dec[2]])
+    ax.plot(Aql_line_1_ra,Aql_line_1_dec,'r')
+
+    Aql_line_2_ra=np.array([Aql_ra[1],Aql_ra[2]])
+    Aql_line_2_dec=np.array([Aql_dec[1],Aql_dec[2]])
+    ax.plot(Aql_line_2_ra,Aql_line_2_dec,'r')
+
+    Aql_line_3_ra=np.array([Aql_ra[4],Aql_ra[0]])
+    Aql_line_3_dec=np.array([Aql_dec[4],Aql_dec[0]])
+    ax.plot(Aql_line_3_ra,Aql_line_3_dec,'r')
+
+    Aql_line_4_ra=np.array([Aql_ra[4],Aql_ra[5]])
+    Aql_line_4_dec=np.array([Aql_dec[4],Aql_dec[5]])
+    ax.plot(Aql_line_4_ra,Aql_line_4_dec,'r')
+
+    Aql_line_5_ra=np.array([Aql_ra[2],Aql_ra[5]])
+    Aql_line_5_dec=np.array([Aql_dec[2],Aql_dec[5]])
+    ax.plot(Aql_line_5_ra,Aql_line_5_dec,'r')
+
+    #Lines for Canis Major
+    CMa_ra=np.array([])
+    CMa_dec=np.array([])
+    
+    for star in range(len(north_data)):
+        if north_data[star][29] == 'CMa':
+            if float(north_data[star][13])<=4:
+                CMa_ra=np.append(CMa_ra,ra[star])
+                CMa_dec=np.append(CMa_dec,dec[star])
+
+
+
+    ax.plot(CMa_ra,CMa_dec,'wo',markersize=1)
+
     
     #Plotting all stars
-    for i in range(len(ra)):
-        ax.plot(ra[i],dec[i],'wo',markersize=mag[i])
+    #for i in range(len(ra)):
+     #   ax.plot(ra[i],dec[i],'wo',markersize=mag[i])
         
     if limited_view is 'true':
         ax.set_rmax(85)
