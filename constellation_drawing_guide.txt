@@ -3,8 +3,8 @@ TOTAL NUMBER OF CONSTELLATIONS TO DO: 31
 CONSTELLATIONS ADDED: 12
 Cassiopeia, Orion, Ursa Major, Cygnus, Gemini, Perseus, Taurus, Andromeda, Auriga, Cepheus, Bootes, Draco
 
-CONSTELLATIONS REMAINING: 18
-Ursa Minor, Aquila, Hercules, Lyra, Ophiuchus, Sagittarius, Scorpius, Cancer, Crater, Hydra, Leo, Virgo, Canis Major, Cetus, Eridanus,
+CONSTELLATIONS REMAINING: 17
+Aquila, Hercules, Lyra, Ophiuchus, Sagittarius, Scorpius, Cancer, Crater, Hydra, Leo, Virgo, Canis Major, Cetus, Eridanus,
 Aquarius, Capricornus, Pegasus, Pisces
 
 The more sensible way to do this would probably be to define a function that connects 2 given stars with a red line, and just find the 
